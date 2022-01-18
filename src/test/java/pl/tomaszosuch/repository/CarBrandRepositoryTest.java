@@ -3,6 +3,7 @@ package pl.tomaszosuch.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pl.tomaszosuch.domain.Car;
 import pl.tomaszosuch.domain.CarBand;
 
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public class CarBrandRepositoryTest {
     @Test
     public void testCarBrandSave() {
         //Given
-        CarBand carBand = new CarBand("Brand name test", LocalDate.of(2022, 01, 01));
+        CarBand carBand = new CarBand("Brand name test", LocalDate.of(2022, 01, 01), List.of(new Car()));
         Long id = carBand.getId();
         //When
         CarBand resultSaveCarBrand = carBrandRepository.save(carBand);
@@ -36,7 +37,7 @@ public class CarBrandRepositoryTest {
     @Test
     public void testCarBrandFindAll() {
         //Given
-        CarBand carBand = new CarBand("Brand name test", LocalDate.of(2022, 01, 01));
+        CarBand carBand = new CarBand("Brand name test", LocalDate.of(2022, 01, 01), List.of(new Car()));
         carBrandRepository.save(carBand);
         Long id = carBand.getId();
         //When
@@ -50,7 +51,7 @@ public class CarBrandRepositoryTest {
     @Test
     public void testCarBrandFindById() {
         //Given
-        CarBand carBand = new CarBand("Brand name test", LocalDate.of(2022, 01, 01));
+        CarBand carBand = new CarBand("Brand name test", LocalDate.of(2022, 01, 01), List.of(new Car()));
         carBrandRepository.save(carBand);
         Long id = carBand.getId();
         //When
@@ -64,7 +65,7 @@ public class CarBrandRepositoryTest {
     @Test
     public void testCarBrandDeleteById() {
         //Given
-        CarBand carBand = new CarBand("Brand name test", LocalDate.of(2022, 01, 01));
+        CarBand carBand = new CarBand("Brand name test", LocalDate.of(2022, 01, 01), List.of(new Car()));
         carBrandRepository.save(carBand);
         Long id = carBand.getId();
         //When

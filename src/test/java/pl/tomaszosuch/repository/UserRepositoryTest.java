@@ -56,4 +56,9 @@ public class UserRepositoryTest {
         //Then
         assertFalse(resultDeleteById.isPresent());
     }
+
+    @Test
+    public void testUserFindByLastName() {
+
+    }
 }

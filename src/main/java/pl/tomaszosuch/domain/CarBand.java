@@ -5,12 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -29,8 +27,21 @@ public class CarBand {
     @Column(name = "construction_year")
     private LocalDate constructionYear;
 
+    @OneToMany(
+            targetEntity = Car.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Car> cars;
+
     public CarBand(String brandName, LocalDate constructionYear) {
         this.brandName = brandName;
         this.constructionYear = constructionYear;
+    }
+
+    public CarBand(String brandName, LocalDate constructionYear, List<Car> cars) {
+        this.brandName = brandName;
+        this.constructionYear = constructionYear;
+        this.cars = cars;
     }
 }
