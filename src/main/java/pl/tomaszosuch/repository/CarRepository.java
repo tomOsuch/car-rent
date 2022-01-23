@@ -13,5 +13,5 @@ public interface CarRepository extends CrudRepository<Car, Long> {
     List<Car> findAll();
     Optional<Car> findById(Long id);
     Car save(Car car);
-    void deleteById(Long id);
+    void delete(Car car);
 }

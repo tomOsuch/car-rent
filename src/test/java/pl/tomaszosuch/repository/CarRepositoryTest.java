@@ -49,13 +49,13 @@ public class CarRepositoryTest {
     }
 
     @Test
-    public void testCarDeleteById() {
+    public void testCarDelete() {
         //Given
         Car car = new Car("Test", LocalDate.of(2022, 01, 01), State.AVAILABLE);
         carRepository.save(car);
         Long id = car.getId();
         //When
-        carRepository.deleteById(id);
+        carRepository.delete(car);
         Optional<Car> resultFind = carRepository.findById(id);
         //Then
         assertTrue(resultFind.isEmpty());

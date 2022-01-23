@@ -18,6 +18,7 @@ import pl.tomaszosuch.validator.RentValidator;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class RentServiceImpl implements RentService {
 
@@ -58,32 +59,31 @@ public class RentServiceImpl implements RentService {
     }
 
     @Override
-    public List<RentDto> getAllRent() {
-        return rentMapper.mapToListRentDto(rentRepository.findAll());
+    public List<Rent> getAllRent() {
+        return rentRepository.findAll();
     }
 
     @Override
-    public RentDto getRentById(Long id) {
-        return rentMapper.mapToRentDto(rentRepository.findById(id).orElseThrow(() -> new RentNotFoundException(RENT_NOT_FOUND_MESSAGE)));
+    public Optional<Rent> getRentById(Long id) {
+        return rentRepository.findById(id);
     }
 
     @Override
-    public RentDto updateRentReturnDate(RentDto rentDto) {
-
+    public Rent updateRentReturnDate(RentDto rentDto) {
         Rent rent = rentRepository.findById(rentDto.getId()).orElseThrow(() -> new RentNotFoundException(RENT_NOT_FOUND_MESSAGE));
         if (!rentValidator.rentValidator(rentDto.getRentDate(), rentDto.getReturnDate())){
             throw new RentDateException("Invalid rent date");
         }
         rent.setReturnDate(rentDto.getReturnDate());
-        return rentMapper.mapToRentDto(rentRepository.save(rent));
+        return rentRepository.save(rent);
     }
 
     @Override
-    public RentDto returnRentedCarById(Long id) {
+    public Rent returnRentedCarById(Long id) {
         Rent rent = rentRepository.findById(id).orElseThrow(() -> new RentNotFoundException(RENT_NOT_FOUND_MESSAGE));
         rent.setRentDate(LocalDate.now());
         rent.getCar().setState(State.AVAILABLE);
-        return rentMapper.mapToRentDto(rent);
+        return rent;
     }
 
     @Override

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.tomaszosuch.domain.Car;
-import pl.tomaszosuch.domain.CarBand;
+import pl.tomaszosuch.domain.CarBrand;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,10 +22,10 @@ public class CarBrandRepositoryTest {
     @Test
     public void testCarBrandSave() {
         //Given
-        CarBand carBand = new CarBand("Brand name test", LocalDate.of(2022, 01, 01), List.of(new Car()));
+        CarBrand carBand = new CarBrand("Brand name test", LocalDate.of(2022, 01, 01), List.of(new Car()));
         Long id = carBand.getId();
         //When
-        CarBand resultSaveCarBrand = carBrandRepository.save(carBand);
+        CarBrand resultSaveCarBrand = carBrandRepository.save(carBand);
         //Then
         assertEquals(carBand.getId(), resultSaveCarBrand.getId());
         assertEquals(carBand.getBrandName(), resultSaveCarBrand.getBrandName());
@@ -37,11 +37,11 @@ public class CarBrandRepositoryTest {
     @Test
     public void testCarBrandFindAll() {
         //Given
-        CarBand carBand = new CarBand("Brand name test", LocalDate.of(2022, 01, 01), List.of(new Car()));
+        CarBrand carBand = new CarBrand("Brand name test", LocalDate.of(2022, 01, 01), List.of(new Car()));
         carBrandRepository.save(carBand);
         Long id = carBand.getId();
         //When
-        List<CarBand> resultFindAll = carBrandRepository.findAll();
+        List<CarBrand> resultFindAll = carBrandRepository.findAll();
         //Then
         assertEquals(1, resultFindAll.size());
         //CleanUp
@@ -51,11 +51,11 @@ public class CarBrandRepositoryTest {
     @Test
     public void testCarBrandFindById() {
         //Given
-        CarBand carBand = new CarBand("Brand name test", LocalDate.of(2022, 01, 01), List.of(new Car()));
+        CarBrand carBand = new CarBrand("Brand name test", LocalDate.of(2022, 01, 01), List.of(new Car()));
         carBrandRepository.save(carBand);
         Long id = carBand.getId();
         //When
-        Optional<CarBand> resultFindById = carBrandRepository.findById(id);
+        Optional<CarBrand> resultFindById = carBrandRepository.findById(id);
         //Then
         assertTrue(resultFindById.isPresent());
         //CleanUp
@@ -65,12 +65,12 @@ public class CarBrandRepositoryTest {
     @Test
     public void testCarBrandDeleteById() {
         //Given
-        CarBand carBand = new CarBand("Brand name test", LocalDate.of(2022, 01, 01), List.of(new Car()));
+        CarBrand carBand = new CarBrand("Brand name test", LocalDate.of(2022, 01, 01), List.of(new Car()));
         carBrandRepository.save(carBand);
         Long id = carBand.getId();
         //When
         carBrandRepository.deleteById(id);
-        Optional<CarBand> resultCarBrandDelete = carBrandRepository.findById(id);
+        Optional<CarBrand> resultCarBrandDelete = carBrandRepository.findById(id);
         //Then
         assertTrue(resultCarBrandDelete.isEmpty());
     }

@@ -1,7 +1,6 @@
 package pl.tomaszosuch.service;
 
 import pl.tomaszosuch.domain.User;
-import pl.tomaszosuch.dto.UserDto;
 
 import java.util.List;
 import java.util.Optional;

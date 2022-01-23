@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class CarBand {
+public class CarBrand {
 
     @Id
     @GeneratedValue
@@ -34,12 +34,12 @@ public class CarBand {
     )
     private List<Car> cars;
 
-    public CarBand(String brandName, LocalDate constructionYear) {
+    public CarBrand(String brandName, LocalDate constructionYear) {
         this.brandName = brandName;
         this.constructionYear = constructionYear;
     }
 
-    public CarBand(String brandName, LocalDate constructionYear, List<Car> cars) {
+    public CarBrand(String brandName, LocalDate constructionYear, List<Car> cars) {
         this.brandName = brandName;
         this.constructionYear = constructionYear;
         this.cars = cars;

@@ -31,7 +31,7 @@ public class Car {
 
     @ManyToOne
     @JoinColumn(name = "CARBRAND_ID")
-    private CarBand carBand;
+    private CarBrand carBand;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Rent rent;
