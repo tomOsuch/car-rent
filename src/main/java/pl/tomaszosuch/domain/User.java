@@ -46,4 +46,12 @@ public class User {
         this.cardIdNumber = cardIdNumber;
         this.drivingLicenseNumber = drivingLicenseNumber;
     }
+
+    public User(Long id, String firstName, String lastName, String cardIdNumber, String drivingLicenseNumber) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.cardIdNumber = cardIdNumber;
+        this.drivingLicenseNumber = drivingLicenseNumber;
+    }
 }

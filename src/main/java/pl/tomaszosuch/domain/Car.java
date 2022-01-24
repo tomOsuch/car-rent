@@ -41,4 +41,11 @@ public class Car {
         this.productionYear = productionYear;
         this.state = state;
     }
+
+    public Car(Long id, String registrationNumber, LocalDate productionYear, State state) {
+        this.id = id;
+        this.registrationNumber = registrationNumber;
+        this.productionYear = productionYear;
+        this.state = state;
+    }
 }

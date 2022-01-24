@@ -44,4 +44,10 @@ public class CarBrand {
         this.constructionYear = constructionYear;
         this.cars = cars;
     }
+
+    public CarBrand(Long id, String brandName, LocalDate constructionYear) {
+        this.id = id;
+        this.brandName = brandName;
+        this.constructionYear = constructionYear;
+    }
 }

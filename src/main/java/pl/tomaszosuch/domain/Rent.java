@@ -36,4 +36,10 @@ public class Rent {
         this.rentDate = rentDate;
         this.returnDate = returnDate;
     }
+
+    public Rent(Long id, LocalDate rentDate, LocalDate returnDate) {
+        this.id = id;
+        this.rentDate = rentDate;
+        this.returnDate = returnDate;
+    }
 }
