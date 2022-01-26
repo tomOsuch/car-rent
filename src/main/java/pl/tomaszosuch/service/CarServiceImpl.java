@@ -57,9 +57,4 @@ public class CarServiceImpl implements CarService {
         Car car = carRepository.findById(id).orElseThrow(() -> new CarNotFoundException("car not found"));
         carRepository.delete(car);
     }
-
-    public boolean addCarToCarBrandList(CarBrand carBrand, Car car) {
-        carBrand.getCars().add(car);
-        return true;
-    }
 }

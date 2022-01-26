@@ -1,6 +1,7 @@
 package pl.tomaszosuch.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pl.tomaszosuch.enums.State;
 import pl.tomaszosuch.exception.CarNotFoundException;
 import pl.tomaszosuch.exception.RentDateException;
@@ -20,6 +21,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class RentServiceImpl implements RentService {
 
     @Autowired
@@ -49,6 +51,7 @@ public class RentServiceImpl implements RentService {
         if (!rentValidator.rentValidator(rentDto.getRentDate(), rentDto.getReturnDate())) {
             throw new RentDateException("Invalid rent date");
         }
+        //ToDo refajktoring metody wydzielenie zapisu do innej metody lub klasy
         Rent rent = rentMapper.mapToRent(rentDto);
         user.getRents().add(rent);
         rent.setUser(user);
@@ -88,6 +91,11 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public void deleteRentById(Long id) {
-        rentRepository.deleteById(id);
+        try {
+            rentRepository.deleteById(id);
+        } catch (RentNotFoundException e) {
+            throw new RentNotFoundException("Rent not found");
+        }
+
     }
 }

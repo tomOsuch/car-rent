@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
         try {
             userRepository.deleteById(id);
         } catch (UserNotFoundException e) {
-            throw new UserNotFoundException("User with pointed ID does not exist");
+            throw new UserNotFoundException("User not found");
         }
     }
 }
