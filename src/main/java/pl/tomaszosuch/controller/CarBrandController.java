@@ -1,9 +1,9 @@
 package pl.tomaszosuch.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import pl.tomaszosuch.domain.CarBrand;
 import pl.tomaszosuch.dto.CarBrandDto;
 import pl.tomaszosuch.exception.CarBrandNotFoundException;
 import pl.tomaszosuch.mapper.CarBrandMapper;
@@ -12,17 +12,15 @@ import pl.tomaszosuch.service.CarBrandServiceImpl;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/")
+@RequestMapping("/v1/carBrand")
+@RequiredArgsConstructor
 public class CarBrandController {
 
+    @Autowired
     private final CarBrandServiceImpl carBrandService;
-    private final CarBrandMapper carBrandMapper;
 
     @Autowired
-    public CarBrandController(CarBrandServiceImpl carBrandService, CarBrandMapper carBrandMapper) {
-        this.carBrandService = carBrandService;
-        this.carBrandMapper = carBrandMapper;
-    }
+    private final CarBrandMapper carBrandMapper;
 
     @GetMapping("/getAllCarBrand")
     public List<CarBrandDto> getAllCarBrand() {

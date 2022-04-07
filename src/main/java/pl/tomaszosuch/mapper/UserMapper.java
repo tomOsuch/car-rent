@@ -1,13 +1,13 @@
 package pl.tomaszosuch.mapper;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.tomaszosuch.domain.User;
 import pl.tomaszosuch.dto.UserDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class UserMapper {
 
     public User mapToUser(final UserDto userDto) {

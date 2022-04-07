@@ -12,17 +12,15 @@ import pl.tomaszosuch.service.UserServiceImpl;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/user")
+@CrossOrigin(origins = "*")
+@RequestMapping("/v1/user/")
 public class UserController {
 
-    private final UserServiceImpl userService;
-    private final UserMapper userMapper;
+    @Autowired
+    private UserServiceImpl userService;
 
     @Autowired
-    public UserController(UserServiceImpl userService, UserMapper userMapper) {
-        this.userService = userService;
-        this.userMapper = userMapper;
-    }
+    private UserMapper userMapper;
 
     @GetMapping("/getAllUser")
     public List<UserDto> getAllUser() {

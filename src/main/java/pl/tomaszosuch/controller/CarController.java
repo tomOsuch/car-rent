@@ -1,5 +1,6 @@
 package pl.tomaszosuch.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,23 +13,21 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/car")
+@RequiredArgsConstructor
 public class CarController {
 
+    @Autowired
     private final CarServiceImpl carService;
-    private final CarMapper carMapper;
 
     @Autowired
-    public CarController(CarServiceImpl carService, CarMapper carMapper) {
-        this.carService = carService;
-        this.carMapper = carMapper;
-    }
+    private final CarMapper carMapper;
 
     @GetMapping("/getAllCar")
     public List<CarDto> getAllCar() {
         return carMapper.mapToCarDtoList(carService.getAllCar());
     }
 
-    @GetMapping("/getcarById/{id}")
+    @GetMapping("/getCarById/{id}")
     public CarDto getCarById(@PathVariable Long id) {
         return carMapper.mapToCarDto(carService.getCarById(id).orElseThrow(() -> new CarNotFoundException("Car not found")));
     }

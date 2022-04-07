@@ -1,5 +1,6 @@
 package pl.tomaszosuch.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.tomaszosuch.exception.UserNotFoundException;
 import pl.tomaszosuch.domain.User;
@@ -11,11 +12,8 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<User> getAllUsers() {

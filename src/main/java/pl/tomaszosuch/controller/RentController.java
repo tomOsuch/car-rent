@@ -1,5 +1,6 @@
 package pl.tomaszosuch.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -13,16 +14,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/rent")
+@RequiredArgsConstructor
 public class RentController {
 
+    @Autowired
     private final RentServiceImpl rentService;
-    private final RentMapper rentMapper;
 
     @Autowired
-    public RentController(RentServiceImpl rentService, RentMapper rentMapper) {
-        this.rentService = rentService;
-        this.rentMapper = rentMapper;
-    }
+    private final RentMapper rentMapper;
 
     @GetMapping("/getAllRent")
     public List<RentDto> getAllRent() {
